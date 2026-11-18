@@ -123,7 +123,7 @@ library(gtsummary)
       
       tbl.1 %>%
         as_gt() %>%
-        gt::gtsave("./Analysis/table1.pdf")
+        gt::gtsave("./Analysis/table1.html")
       
       tbl_regression(mod.1) %>%
         plot()
