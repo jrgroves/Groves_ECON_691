@@ -28,9 +28,9 @@ library(gtsummary)
            BallotGroup == "A" ) 
 
   #Define the list of variables to pull from the ACS.
-      temp <- paste("B01001", str_pad(7:25, width = 3, side = "left", pad = "0"), sep = "_")
+      temp1 <- paste("B01001", str_pad(7:25, width = 3, side = "left", pad = "0"), sep = "_")
       temp2 <- paste("B01001", str_pad(31:49, width = 3, side = "left", pad = "0"), sep = "_")
-      vars <- c(temp, temp2)
+      vars <- c(temp1, temp2)
   
   #Call the US Census API
       cen.dat <- get_acs(geography = "county",
@@ -58,7 +58,7 @@ library(gtsummary)
       
       gender <- cen.dat %>%
         st_drop_geometry() %>%
-        mutate(gender = case_when(variable %in% temp ~ "male",
+        mutate(gender = case_when(variable %in% temp1 ~ "male",
                                   variable %in% temp2 ~ "female",
                                   TRUE ~ "missing")) %>%
         summarise(pop = sum(estimate), .by = c(NAME, gender)) %>%
